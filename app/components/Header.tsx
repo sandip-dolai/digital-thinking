@@ -93,8 +93,8 @@ export default function Header() {
         anchor="top"
         open={mobileOpen}
         onClose={() => setMobileOpen(false)}
-        PaperProps={{
-          sx: { 
+        sx={{
+          '& .MuiDrawer-paper': {
             width: '100%', 
             height: '100vh', 
             background: 'rgba(5, 5, 10, 0.98)', 
