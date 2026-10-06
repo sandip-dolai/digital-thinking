@@ -9,10 +9,10 @@ import HistoryIcon from '@mui/icons-material/History';
 export default function About() {
   const timelineEvents = [
     { date: 'February 2021', text: 'Channel started and first video uploaded.' },
-    { date: 'September 2021', text: 'Started diving deep into backend architecture.' },
-    { date: 'February 2022', text: 'Expanded content to cover complex system design.' },
-    { date: 'August 2022', text: 'Began consulting for businesses on technical scaling.' },
-    { date: 'Today', text: 'Launching the agency to build software that grows businesses.' }
+    { date: 'September 2021', text: 'Hit the 500 subscriber milestone.' },
+    { date: 'February 2022', text: 'Crossed 1,000 developers learning with us.' },
+    { date: 'August 2022', text: 'Reached 2,000 subscribers.' },
+    { date: 'Today', text: 'Approaching 5,000 subscribers and launching the agency to build software that grows businesses.' }
   ];
 
   return (
