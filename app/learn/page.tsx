@@ -251,7 +251,7 @@ export default function Learn() {
                       
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mt: 'auto' }}>
                         <Typography sx={{ 
-                          color: '#fff', fontWeight: 600, fontSize: '0.9rem',
+                          fontWeight: 600, fontSize: '0.9rem',
                           transition: 'color 0.3s', color: isHovered ? vid.color : '#fff'
                         }}>
                           Watch Video

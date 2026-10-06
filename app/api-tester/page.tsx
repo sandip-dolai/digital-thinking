@@ -14,6 +14,19 @@ import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import DeleteSweepIcon from '@mui/icons-material/DeleteSweep';
 import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
 
+/* ─── Shared animated-border keyframes ─── */
+const apiThemeStyles = {
+  '@keyframes borderShimmer': {
+    '0%':   { backgroundPosition: '0% 50%' },
+    '50%':  { backgroundPosition: '100% 50%' },
+    '100%': { backgroundPosition: '0% 50%' },
+  },
+  '@keyframes pulseGlow': {
+    '0%, 100%': { opacity: 0.3 },
+    '50%':      { opacity: 0.6 },
+  },
+};
+
 export default function APITester() {
   const [method, setMethod] = React.useState('GET');
   const [url, setUrl] = React.useState('https://jsonplaceholder.typicode.com/todos/1');
@@ -120,51 +133,62 @@ export default function APITester() {
   };
 
   const methodColors: Record<string, string> = {
-    GET: '#2EA043',
-    POST: '#4493F8',
-    PUT: '#D29922',
-    PATCH: '#D29922',
-    DELETE: '#F85149'
+    GET: '#34D399',
+    POST: '#60A5FA',
+    PUT: '#FBBF24',
+    PATCH: '#FBBF24',
+    DELETE: '#F87171'
   };
 
   return (
-    <Box>
-      <Box sx={{ pt: { xs: 20, md: 24 }, pb: { xs: 10, md: 10 } }}>
-        <Container maxWidth="xl">
-          <Typography variant="h1" sx={{ fontSize: { xs: '2.5rem', md: '3.5rem' }, mb: 2 }}>
+    <Box sx={apiThemeStyles}>
+      <Box sx={{ pt: { xs: 20, md: 24 }, pb: { xs: 10, md: 10 }, position: 'relative' }}>
+        
+        {/* Ambient glows to match 2026 aesthetics */}
+        <Box sx={{ position: 'absolute', top: '10%', right: '20%', width: '30vw', height: '30vw', borderRadius: '50%', background: 'radial-gradient(circle, rgba(37,99,235,0.06) 0%, transparent 70%)', filter: 'blur(80px)', pointerEvents: 'none', animation: 'pulseGlow 8s infinite' }} />
+        
+        <Container maxWidth="xl" sx={{ position: 'relative', zIndex: 1 }}>
+          <Typography sx={{ color: '#2563EB', fontWeight: 700, letterSpacing: '0.15em', mb: 2, display: 'block', fontSize: '0.8rem', textTransform: 'uppercase' }}>
+            Developer Tools
+          </Typography>
+          <Typography variant="h1" sx={{ fontSize: { xs: '2.5rem', md: '3.5rem' }, mb: 2, fontWeight: 800 }}>
             API Client
           </Typography>
           <Typography variant="body1" sx={{ fontSize: '1.1rem', color: 'text.secondary', mb: 6 }}>
-            A lightning-fast, zero-save HTTP client for testing REST APIs.
+            A lightning-fast, zero-save HTTP client for testing REST APIs instantly in your browser.
           </Typography>
 
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
             
-            {/* URL Bar */}
+            {/* ═══════════════════════════════════════════════════════════
+                URL BAR — Glowing Border Frame
+            ═══════════════════════════════════════════════════════════ */}
             <Box sx={{ 
               display: 'flex', gap: 0, flexWrap: { xs: 'wrap', md: 'nowrap' },
-              borderRadius: '8px', overflow: 'hidden',
+              borderRadius: '16px', overflow: 'hidden',
+              background: 'linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%)',
               border: '1px solid rgba(255,255,255,0.1)',
-              bgcolor: '#0D1117'
+              boxShadow: '0 8px 32px rgba(0,0,0,0.3)',
+              backdropFilter: 'blur(10px)'
             }}>
               <Select
                 value={method}
                 onChange={(e) => setMethod(e.target.value as string)}
-                MenuProps={{ sx: { '& .MuiPaper-root': { bgcolor: '#161B22', color: '#fff' } } }}
+                MenuProps={{ sx: { '& .MuiPaper-root': { bgcolor: '#0A0F1E', color: '#fff', border: '1px solid rgba(255,255,255,0.1)' } } }}
                 sx={{ 
                   width: { xs: '100%', md: '140px' }, 
                   bgcolor: 'transparent', 
                   color: methodColors[method] || '#FFFFFF',
-                  fontWeight: 700,
-                  fontSize: '0.95rem',
-                  borderRight: { xs: 'none', md: '1px solid rgba(255,255,255,0.1)' },
-                  borderBottom: { xs: '1px solid rgba(255,255,255,0.1)', md: 'none' },
+                  fontWeight: 800,
+                  fontSize: '1rem',
+                  borderRight: { xs: 'none', md: '1px solid rgba(255,255,255,0.08)' },
+                  borderBottom: { xs: '1px solid rgba(255,255,255,0.08)', md: 'none' },
                   '.MuiOutlinedInput-notchedOutline': { border: 'none' },
-                  '& .MuiSelect-select': { py: 1.5 },
+                  '& .MuiSelect-select': { py: 2 },
                 }}
               >
                 {['GET', 'POST', 'PUT', 'PATCH', 'DELETE'].map(m => (
-                  <MenuItem key={m} value={m} sx={{ color: methodColors[m] || '#FFFFFF', fontWeight: 600 }}>{m}</MenuItem>
+                  <MenuItem key={m} value={m} sx={{ color: methodColors[m] || '#FFFFFF', fontWeight: 700 }}>{m}</MenuItem>
                 ))}
               </Select>
               <TextField 
@@ -174,7 +198,7 @@ export default function APITester() {
                 onChange={(e) => setUrl(e.target.value)}
                 sx={{
                   bgcolor: 'transparent',
-                  input: { color: '#C9D1D9', fontFamily: '"Fira Code", "SF Mono", Consolas, monospace', py: 1.5 },
+                  input: { color: '#F1F5F9', fontFamily: '"Fira Code", monospace', py: 2, fontSize: '1.05rem' },
                   '.MuiOutlinedInput-notchedOutline': { border: 'none' },
                 }}
               />
@@ -184,42 +208,47 @@ export default function APITester() {
                 onClick={handleSend}
                 disabled={loading || !url}
                 sx={{ 
-                  width: { xs: '100%', md: '120px' },
-                  bgcolor: '#238636', color: '#fff',
+                  width: { xs: '100%', md: '140px' },
+                  background: 'linear-gradient(135deg, #2563EB, #4F46E5)',
+                  color: '#fff',
                   borderRadius: 0,
-                  textTransform: 'none', fontWeight: 600,
-                  '&:hover': { bgcolor: '#2EA043' },
-                  '&.Mui-disabled': { bgcolor: 'rgba(35, 134, 54, 0.5)', color: 'rgba(255,255,255,0.5)' }
+                  textTransform: 'none', fontWeight: 700, fontSize: '1rem',
+                  '&:hover': { background: 'linear-gradient(135deg, #1D4ED8, #4338CA)' },
+                  '&.Mui-disabled': { background: 'rgba(37,99,235,0.2)', color: 'rgba(255,255,255,0.3)' }
                 }}
               >
                 {loading ? 'Sending' : 'Send'}
               </Button>
             </Box>
 
-            {/* Split Workspace */}
+            {/* ═══════════════════════════════════════════════════════════
+                SPLIT WORKSPACE — 2026 Glassmorphism
+            ═══════════════════════════════════════════════════════════ */}
             <Box sx={{ 
               display: 'flex', flexDirection: { xs: 'column', lg: 'row' }, 
-              gap: 0, minHeight: '600px',
-              borderRadius: '16px', overflow: 'hidden',
-              border: '1px solid rgba(255,255,255,0.1)',
-              bgcolor: '#0D1117'
+              gap: 0, minHeight: '650px',
+              borderRadius: '24px', overflow: 'hidden',
+              background: 'linear-gradient(135deg, rgba(10,15,30,0.8) 0%, rgba(5,8,17,0.9) 100%)',
+              border: '1px solid rgba(255,255,255,0.08)',
+              boxShadow: '0 20px 60px rgba(0,0,0,0.5)',
+              backdropFilter: 'blur(20px)'
             }}>
               
-              {/* Left Side: Request Config */}
+              {/* ─── Left Side: Request Config ─── */}
               <Box sx={{ 
                 flex: 1, display: 'flex', flexDirection: 'column',
-                borderRight: { xs: 'none', lg: '1px solid rgba(255,255,255,0.1)' },
-                borderBottom: { xs: '1px solid rgba(255,255,255,0.1)', lg: 'none' }
+                borderRight: { xs: 'none', lg: '1px solid rgba(255,255,255,0.08)' },
+                borderBottom: { xs: '1px solid rgba(255,255,255,0.08)', lg: 'none' }
               }}>
-                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid rgba(255,255,255,0.05)', bgcolor: 'rgba(255,255,255,0.02)', pr: 2 }}>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid rgba(255,255,255,0.05)', background: 'rgba(255,255,255,0.02)', pr: 2 }}>
                   <Tabs 
                     value={reqTab} 
                     onChange={(e, v) => setReqTab(v)} 
                     sx={{ 
-                      minHeight: '44px', 
-                      '& .MuiTab-root': { color: '#8B949E', fontWeight: 600, fontSize: '0.85rem', textTransform: 'none', minHeight: '44px' }, 
-                      '& .Mui-selected': { color: '#E2E8F0' }, 
-                      '& .MuiTabs-indicator': { backgroundColor: '#F78166' } 
+                      minHeight: '48px', 
+                      '& .MuiTab-root': { color: '#64748B', fontWeight: 600, fontSize: '0.85rem', textTransform: 'none', minHeight: '48px' }, 
+                      '& .Mui-selected': { color: '#F1F5F9' }, 
+                      '& .MuiTabs-indicator': { backgroundColor: '#3B82F6', height: '2px' } 
                     }}
                   >
                     <Tab label="JSON Body" />
@@ -227,10 +256,10 @@ export default function APITester() {
                   </Tabs>
                   
                   <Box sx={{ display: 'flex', gap: 1 }}>
-                    <Button size="small" onClick={handleFormatJson} startIcon={<AutoFixHighIcon sx={{ fontSize: 14 }} />} sx={{ color: '#8B949E', fontSize: '0.75rem', textTransform: 'none', minWidth: 0, p: 1, '&:hover': { color: '#fff', bgcolor: 'rgba(255,255,255,0.1)' } }}>
+                    <Button size="small" onClick={handleFormatJson} startIcon={<AutoFixHighIcon sx={{ fontSize: 16 }} />} sx={{ color: '#94A3B8', fontSize: '0.75rem', textTransform: 'none', minWidth: 0, px: 1.5, py: 0.5, borderRadius: '8px', '&:hover': { color: '#fff', background: 'rgba(255,255,255,0.1)' } }}>
                       Format
                     </Button>
-                    <Button size="small" onClick={handleCopyRequest} startIcon={<ContentCopyIcon sx={{ fontSize: 14 }} />} sx={{ color: '#8B949E', fontSize: '0.75rem', textTransform: 'none', minWidth: 0, p: 1, '&:hover': { color: '#fff', bgcolor: 'rgba(255,255,255,0.1)' } }}>
+                    <Button size="small" onClick={handleCopyRequest} startIcon={<ContentCopyIcon sx={{ fontSize: 16 }} />} sx={{ color: '#94A3B8', fontSize: '0.75rem', textTransform: 'none', minWidth: 0, px: 1.5, py: 0.5, borderRadius: '8px', '&:hover': { color: '#fff', background: 'rgba(255,255,255,0.1)' } }}>
                       {reqCopied ? 'Copied' : 'Copy'}
                     </Button>
                   </Box>
@@ -242,67 +271,69 @@ export default function APITester() {
                   placeholder={reqTab === 0 ? '{\n  "key": "value"\n}' : '{\n  "Authorization": "Bearer token"\n}'}
                   sx={{
                     flexGrow: 1,
-                    bgcolor: '#010409',
-                    color: '#C9D1D9',
+                    background: 'transparent',
+                    color: '#E2E8F0',
                     p: 3,
-                    fontFamily: '"Fira Code", "SF Mono", Consolas, monospace',
-                    fontSize: '0.95rem',
+                    fontFamily: '"Fira Code", monospace',
+                    fontSize: '1rem',
                     border: 'none',
                     outline: 'none',
                     resize: 'none',
-                    lineHeight: 1.6,
-                    minHeight: { xs: '300px', lg: 'auto' }
+                    lineHeight: 1.7,
+                    minHeight: { xs: '350px', lg: 'auto' }
                   }}
                   spellCheck={false}
                 />
               </Box>
 
-              {/* Right Side: Response View */}
-              <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+              {/* ─── Right Side: Response View ─── */}
+              <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', background: 'rgba(0,0,0,0.2)' }}>
                 <Box sx={{ 
-                  bgcolor: 'rgba(255,255,255,0.02)', px: 3, py: 1, display: 'flex', justifyContent: 'space-between', 
-                  borderBottom: '1px solid rgba(255,255,255,0.05)', minHeight: '44px', alignItems: 'center' 
+                  background: 'rgba(255,255,255,0.01)', px: 3, display: 'flex', justifyContent: 'space-between', 
+                  borderBottom: '1px solid rgba(255,255,255,0.05)', minHeight: '48px', alignItems: 'center' 
                 }}>
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 3 }}>
-                    <Typography sx={{ fontSize: '0.85rem', fontWeight: 600, color: '#8B949E', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                    <Typography sx={{ fontSize: '0.8rem', fontWeight: 700, color: '#64748B', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
                       Response
                     </Typography>
                     {response && (
                       <Box sx={{ display: 'flex', gap: 2 }}>
-                        <Typography sx={{ fontSize: '0.85rem', color: response.status >= 200 && response.status < 300 ? '#2EA043' : '#F85149', fontWeight: 700 }}>
+                        <Typography sx={{ fontSize: '0.85rem', color: response.status >= 200 && response.status < 300 ? '#34D399' : '#F87171', fontWeight: 800 }}>
                           {response.status} {response.statusText}
                         </Typography>
-                        <Typography sx={{ fontSize: '0.85rem', color: '#4493F8', fontWeight: 600 }}>
+                        <Typography sx={{ fontSize: '0.85rem', color: '#60A5FA', fontWeight: 700 }}>
                           {response.time} ms
                         </Typography>
                       </Box>
                     )}
                   </Box>
                   <Box sx={{ display: 'flex', gap: 1 }}>
-                    <Button size="small" onClick={handleCopyResponse} startIcon={<ContentCopyIcon sx={{ fontSize: 14 }} />} disabled={!response && !error} sx={{ color: '#8B949E', fontSize: '0.75rem', textTransform: 'none', minWidth: 0, p: 1, '&:hover': { color: '#fff', bgcolor: 'rgba(255,255,255,0.1)' }, '&.Mui-disabled': { color: 'rgba(255,255,255,0.2)' } }}>
+                    <Button size="small" onClick={handleCopyResponse} startIcon={<ContentCopyIcon sx={{ fontSize: 16 }} />} disabled={!response && !error} sx={{ color: '#94A3B8', fontSize: '0.75rem', textTransform: 'none', minWidth: 0, px: 1.5, py: 0.5, borderRadius: '8px', '&:hover': { color: '#fff', background: 'rgba(255,255,255,0.1)' }, '&.Mui-disabled': { color: 'rgba(255,255,255,0.2)' } }}>
                       {resCopied ? 'Copied' : 'Copy'}
                     </Button>
-                    <Button size="small" onClick={handleClearResponse} startIcon={<DeleteSweepIcon sx={{ fontSize: 16 }} />} disabled={!response && !error} sx={{ color: '#8B949E', fontSize: '0.75rem', textTransform: 'none', minWidth: 0, p: 1, '&:hover': { color: '#F85149', bgcolor: 'rgba(248,81,73,0.1)' }, '&.Mui-disabled': { color: 'rgba(255,255,255,0.2)' } }}>
+                    <Button size="small" onClick={handleClearResponse} startIcon={<DeleteSweepIcon sx={{ fontSize: 16 }} />} disabled={!response && !error} sx={{ color: '#94A3B8', fontSize: '0.75rem', textTransform: 'none', minWidth: 0, px: 1.5, py: 0.5, borderRadius: '8px', '&:hover': { color: '#F87171', background: 'rgba(248,113,113,0.1)' }, '&.Mui-disabled': { color: 'rgba(255,255,255,0.2)' } }}>
                       Clear
                     </Button>
                   </Box>
                 </Box>
-                <Box sx={{ flexGrow: 1, p: 3, overflowY: 'auto', bgcolor: '#010409', minHeight: { xs: '300px', lg: 'auto' } }}>
+                <Box sx={{ flexGrow: 1, p: 3, overflowY: 'auto', minHeight: { xs: '350px', lg: 'auto' } }}>
                   {error ? (
-                    <Typography sx={{ color: '#F85149', fontFamily: '"Fira Code", "SF Mono", Consolas, monospace', fontSize: '0.9rem' }}>{error}</Typography>
+                    <Typography sx={{ color: '#F87171', fontFamily: '"Fira Code", monospace', fontSize: '1rem' }}>{error}</Typography>
                   ) : response ? (
                     <Typography component="pre" sx={{ 
-                      fontFamily: '"Fira Code", "SF Mono", Consolas, monospace', 
-                      fontSize: '0.9rem',
-                      color: '#C9D1D9',
+                      fontFamily: '"Fira Code", monospace', 
+                      fontSize: '1rem',
+                      color: '#E2E8F0',
                       whiteSpace: 'pre-wrap',
                       wordBreak: 'break-word',
-                      lineHeight: 1.6
+                      lineHeight: 1.7
                     }}>
                       {response.data}
                     </Typography>
                   ) : (
-                    <Typography sx={{ color: '#8B949E', fontStyle: 'italic', fontSize: '0.9rem', mt: 1 }}>Hit Send to get a response...</Typography>
+                    <Box sx={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <Typography sx={{ color: '#475569', fontStyle: 'italic', fontSize: '1rem', fontWeight: 500 }}>Waiting for request...</Typography>
+                    </Box>
                   )}
                 </Box>
               </Box>
