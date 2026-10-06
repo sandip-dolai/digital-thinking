@@ -33,9 +33,9 @@ export default function TechCard({ children, sx = {} }: TechCardProps) {
         transition: 'all 0.7s ease',
       },
       '&:hover': {
-        borderColor: 'rgba(0, 240, 255, 0.5)',
-        boxShadow: '0 15px 45px rgba(0,240,255,0.15)',
-        transform: 'translateY(-8px)',
+        borderColor: 'rgba(37, 99, 235, 0.5)',
+        boxShadow: '0 15px 45px rgba(37, 99, 235, 0.12)',
+        transform: 'translateY(-4px)',
         '&::before': {
           left: '200%'
         }

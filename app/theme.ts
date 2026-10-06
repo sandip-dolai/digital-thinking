@@ -7,22 +7,26 @@ export const outfit = Outfit({ subsets: ['latin'], display: 'swap' });
 let theme = createTheme({
   typography: {
     fontFamily: outfit.style.fontFamily,
-    h1: { fontWeight: 800, letterSpacing: '-0.03em', color: '#FFFFFF', lineHeight: 1.1 },
-    h2: { fontWeight: 700, letterSpacing: '-0.02em', color: '#FFFFFF' },
-    h3: { fontWeight: 700, letterSpacing: '-0.01em', color: '#FFFFFF' },
-    h4: { fontWeight: 600, letterSpacing: '0em', color: '#FFFFFF' },
-    body1: { color: 'rgba(255, 255, 255, 0.8)', fontSize: '1.15rem', lineHeight: 1.6 },
-    body2: { color: 'rgba(255, 255, 255, 0.6)' },
+    h1: { fontWeight: 800, letterSpacing: '-0.03em', color: '#F1F5F9', lineHeight: 1.1 },
+    h2: { fontWeight: 700, letterSpacing: '-0.02em', color: '#F1F5F9' },
+    h3: { fontWeight: 700, letterSpacing: '-0.01em', color: '#E2E8F0' },
+    h4: { fontWeight: 600, letterSpacing: '0em', color: '#E2E8F0' },
+    body1: { color: '#94A3B8', fontSize: '1.15rem', lineHeight: 1.7 },
+    body2: { color: '#64748B' },
     button: { textTransform: 'none', fontWeight: 600, letterSpacing: '0.02em' },
   },
   palette: {
     mode: 'dark',
-    primary: { main: '#0066FF' }, // Deep Tech Blue
-    secondary: { main: '#8BA3C4' }, // Slate Blue-Grey
-    background: { default: '#05050A', paper: '#0A0A0F' },
-    divider: 'rgba(0, 102, 255, 0.15)', // Subtle blue divider
+    primary: { main: '#2563EB' },       // Electric Blue
+    secondary: { main: '#94A3B8' },     // Slate Grey
+    background: { default: '#0A0F1E', paper: '#111827' },  // Deep Navy
+    divider: 'rgba(37, 99, 235, 0.12)',
+    text: {
+      primary: '#F1F5F9',
+      secondary: '#94A3B8',
+    }
   },
-  shape: { borderRadius: 24 },
+  shape: { borderRadius: 16 },
   components: {
     MuiButton: {
       styleOverrides: {
@@ -30,27 +34,27 @@ let theme = createTheme({
           borderRadius: '100px',
           padding: '12px 32px',
           boxShadow: 'none',
-          transition: 'all 0.3s ease',
+          transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
         },
         contained: {
-          background: '#0066FF',
+          background: 'linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%)',
           color: '#FFFFFF',
-          border: 'none',
+          border: '1px solid rgba(37, 99, 235, 0.3)',
           '&:hover': { 
-            background: '#0052CC',
-            boxShadow: '0 0 20px rgba(0, 102, 255, 0.4)',
-            transform: 'scale(1.02)'
+            background: 'linear-gradient(135deg, #3B82F6 0%, #2563EB 100%)',
+            boxShadow: '0 4px 24px rgba(37, 99, 235, 0.35)',
+            transform: 'translateY(-1px)'
           },
         },
         outlined: {
-          borderColor: 'rgba(0, 102, 255, 0.3)',
-          color: '#FFFFFF',
-          background: 'rgba(0, 102, 255, 0.05)',
-          backdropFilter: 'blur(10px)',
+          borderColor: 'rgba(148, 163, 184, 0.2)',
+          color: '#E2E8F0',
+          background: 'rgba(255, 255, 255, 0.03)',
+          backdropFilter: 'blur(12px)',
           '&:hover': { 
-            background: 'rgba(0, 102, 255, 0.15)', 
-            borderColor: '#0066FF',
-            boxShadow: '0 0 20px rgba(0, 102, 255, 0.2)'
+            background: 'rgba(37, 99, 235, 0.08)', 
+            borderColor: 'rgba(37, 99, 235, 0.5)',
+            boxShadow: '0 4px 16px rgba(37, 99, 235, 0.15)'
           },
         }
       }
@@ -58,7 +62,7 @@ let theme = createTheme({
     MuiCssBaseline: {
       styleOverrides: {
         body: { 
-          backgroundColor: '#030308',
+          backgroundColor: '#060A16',
         }
       }
     }
