@@ -22,7 +22,6 @@ export default function Header() {
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'Services', path: '/services' },
-    { name: 'Work', path: '/work' },
     { name: 'Learn', path: '/learn' },
     { name: 'About', path: '/about' },
   ];

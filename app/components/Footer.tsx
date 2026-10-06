@@ -30,7 +30,6 @@ export default function Footer() {
             <Typography variant="body2" sx={{ fontWeight: 600, mb: 2, color: 'text.primary' }}>Links</Typography>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
               <Link href="/services" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.6)' }}>Services</Link>
-              <Link href="/work" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.6)' }}>Work</Link>
               <Link href="/learn" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.6)' }}>Learn</Link>
               <Link href="/about" style={{ textDecoration: 'none', color: 'rgba(255,255,255,0.6)' }}>About</Link>
             </Box>

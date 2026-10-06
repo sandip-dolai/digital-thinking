@@ -38,13 +38,34 @@ export default function About() {
                 <RocketLaunchIcon sx={{ fontSize: 32, color: '#FFFFFF' }} />
                 <Typography variant="h4" sx={{ fontSize: '1.5rem' }}>Our Mission</Typography>
               </Box>
-              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3, flexGrow: 1 }}>
-                <Typography variant="body1" sx={{ color: 'text.secondary' }}>
-                  I'm Sandip Dolai. I started the Digital Thinking YouTube channel on February 1, 2021. My goal was simple: to help developers and tech enthusiasts learn Software Engineering, Backend Development, and System Design by breaking down complex concepts practically.
-                </Typography>
-                <Typography variant="body1" sx={{ color: 'text.secondary' }}>
-                  Over the years, our learning community grew rapidly. But as I taught others how to build, I realized there was a massive gap in the market. Business owners needed the very systems I was teaching, but they didn't want to learn how to build them—they just wanted their businesses to run better.
-                </Typography>
+              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4, flexGrow: 1 }}>
+                {/* Profile Section */}
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 3, flexDirection: { xs: 'column', sm: 'row' } }}>
+                  <Box 
+                    component="img" 
+                    src="/profile.jpg" 
+                    alt="Sandip Dolai" 
+                    sx={{ 
+                      width: 100, height: 100, borderRadius: '50%', objectFit: 'cover',
+                      border: '2px solid rgba(37,99,235,0.5)',
+                      boxShadow: '0 0 20px rgba(37,99,235,0.2)',
+                      flexShrink: 0
+                    }} 
+                  />
+                  <Box sx={{ textAlign: { xs: 'center', sm: 'left' } }}>
+                    <Typography variant="h5" sx={{ color: '#F1F5F9', fontWeight: 700, mb: 0.5 }}>Sandip Dolai</Typography>
+                    <Typography variant="body2" sx={{ color: '#2563EB', fontWeight: 600 }}>Founder, Digital Thinking</Typography>
+                  </Box>
+                </Box>
+                
+                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                  <Typography variant="body1" sx={{ color: 'text.secondary' }}>
+                    I started the Digital Thinking YouTube channel on February 1, 2021. My goal was simple: to help developers and tech enthusiasts learn Software Engineering, Backend Development, and System Design by breaking down complex concepts practically.
+                  </Typography>
+                  <Typography variant="body1" sx={{ color: 'text.secondary' }}>
+                    Over the years, our learning community grew rapidly. But as I taught others how to build, I realized there was a massive gap in the market. Business owners needed the very systems I was teaching, but they didn't want to learn how to build them—they just wanted their businesses to run better.
+                  </Typography>
+                </Box>
               </Box>
             </TechCard>
             
