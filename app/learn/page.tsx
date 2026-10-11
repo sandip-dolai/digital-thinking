@@ -70,7 +70,7 @@ export default function Learn() {
       {/* ═══════════════════════════════════════════════════════════
           HERO  — Animated background & glowing elements
       ═══════════════════════════════════════════════════════════ */}
-      <Box sx={{ position: 'relative', pt: { xs: 22, md: 30 }, pb: { xs: 10, md: 16 }, overflow: 'hidden' }}>
+      <Box sx={{ position: 'relative', pt: { xs: 13, sm: 18, md: 26 }, pb: { xs: 8, md: 14 }, overflow: 'hidden' }}>
         {/* Ambient meshes */}
         <Box sx={{ position: 'absolute', top: '-10%', left: '10%', width: '40vw', height: '40vw', borderRadius: '50%', background: 'radial-gradient(circle, rgba(37,99,235,0.08) 0%, transparent 70%)', filter: 'blur(80px)', animation: 'float 15s ease-in-out infinite', pointerEvents: 'none' }} />
         <Box sx={{ position: 'absolute', bottom: '-20%', right: '5%', width: '45vw', height: '45vw', borderRadius: '50%', background: 'radial-gradient(circle, rgba(124,58,237,0.08) 0%, transparent 70%)', filter: 'blur(90px)', animation: 'float 12s ease-in-out infinite reverse', pointerEvents: 'none' }} />

@@ -7,17 +7,12 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import CloseIcon from '@mui/icons-material/Close';
-import Drawer from '@mui/material/Drawer';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
+import YouTubeIcon from '@mui/icons-material/YouTube';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 export default function Header() {
   const pathname = usePathname();
-  const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const navLinks = [
     { name: 'Home', path: '/' },
@@ -75,70 +70,33 @@ export default function Header() {
             Get in touch
           </Button>
 
-          {/* Mobile Menu Icon */}
+          {/* Mobile YouTube Channel Redirect Button */}
           <IconButton 
-            color="inherit" 
-            onClick={() => setMobileOpen(true)}
-            sx={{ display: { xs: 'flex', md: 'none' } }}
+            component="a"
+            href="https://www.youtube.com/@Digital-Thinking"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Visit our YouTube channel"
+            sx={{ 
+              display: { xs: 'flex', md: 'none' },
+              color: '#FF0000',
+              background: 'rgba(255, 0, 0, 0.1)',
+              border: '1px solid rgba(255, 0, 0, 0.25)',
+              backdropFilter: 'blur(10px)',
+              p: 1,
+              transition: 'all 0.3s ease',
+              '&:hover': {
+                background: 'rgba(255, 0, 0, 0.2)',
+                boxShadow: '0 0 16px rgba(255, 0, 0, 0.45)',
+                transform: 'scale(1.05)'
+              }
+            }}
           >
-            <MenuIcon />
+            <YouTubeIcon sx={{ fontSize: '1.6rem' }} />
           </IconButton>
 
         </Toolbar>
       </Container>
-
-      {/* Mobile Full-Screen Overlay */}
-      <Drawer
-        anchor="top"
-        open={mobileOpen}
-        onClose={() => setMobileOpen(false)}
-        sx={{
-          '& .MuiDrawer-paper': {
-            width: '100%', 
-            height: '100vh', 
-            background: 'rgba(5, 5, 10, 0.98)', 
-            backdropFilter: 'blur(30px)',
-            p: 4,
-            display: 'flex',
-            flexDirection: 'column'
-          }
-        }}
-      >
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 8 }}>
-          <Typography variant="h5" sx={{ fontWeight: 800, color: '#FFFFFF', letterSpacing: '-0.02em' }}>
-            Digital Thinking
-          </Typography>
-          <IconButton color="inherit" onClick={() => setMobileOpen(false)}>
-            <CloseIcon fontSize="large" />
-          </IconButton>
-        </Box>
-        
-        <List sx={{ display: 'flex', flexDirection: 'column', gap: 4, width: '100%', alignItems: 'center' }}>
-          {navLinks.map((link) => {
-            const isActive = pathname === link.path;
-            return (
-              <ListItem key={link.name} disablePadding sx={{ width: 'auto' }}>
-                <Link href={link.path} style={{ textDecoration: 'none', width: '100%', textAlign: 'center' }} onClick={() => setMobileOpen(false)}>
-                  <Box sx={{
-                    fontSize: '2rem',
-                    color: isActive ? '#FFFFFF' : 'rgba(255,255,255,0.6)',
-                    fontWeight: 700,
-                    transition: 'color 0.3s',
-                    '&:hover': { color: '#FFFFFF' }
-                  }}>
-                    {link.name}
-                  </Box>
-                </Link>
-              </ListItem>
-            );
-          })}
-          <ListItem disablePadding sx={{ mt: 4, width: '100%', justifyContent: 'center' }}>
-            <Button variant="contained" href="/contact" size="large" onClick={() => setMobileOpen(false)} sx={{ py: 2, px: 6, fontSize: '1.2rem', borderRadius: '100px' }}>
-              Get in touch
-            </Button>
-          </ListItem>
-        </List>
-      </Drawer>
     </AppBar>
   );
 }

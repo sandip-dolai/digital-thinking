@@ -60,7 +60,7 @@ export default function Home() {
       {/* ═══════════════════════════════════════════════════════════
           HERO  — Animated background, glass stats, gradient text
       ═══════════════════════════════════════════════════════════ */}
-      <Box sx={{ position: 'relative', pt: { xs: 22, md: 30 }, pb: { xs: 12, md: 16 }, overflow: 'hidden' }}>
+      <Box sx={{ position: 'relative', pt: { xs: 13, sm: 18, md: 28 }, pb: { xs: 10, md: 16 }, overflow: 'hidden' }}>
         {/* Ambient background meshes */}
         <Box sx={{ position: 'absolute', top: '-15%', left: '-10%', width: '50vw', height: '50vw', borderRadius: '50%', background: 'radial-gradient(circle, rgba(37,99,235,0.08) 0%, transparent 70%)', filter: 'blur(80px)', animation: 'float 12s ease-in-out infinite', pointerEvents: 'none' }} />
         <Box sx={{ position: 'absolute', bottom: '0', right: '-10%', width: '45vw', height: '45vw', borderRadius: '50%', background: 'radial-gradient(circle, rgba(124,58,237,0.06) 0%, transparent 70%)', filter: 'blur(90px)', animation: 'float 16s ease-in-out infinite reverse', pointerEvents: 'none' }} />
@@ -70,18 +70,18 @@ export default function Home() {
             Software Engineering Agency & Community
           </Typography>
           
-          <Typography variant="h1" sx={{ fontSize: { xs: '3rem', sm: '4.5rem', md: '5.5rem' }, mb: 4, maxWidth: '1000px', mx: 'auto', lineHeight: 1.05, fontWeight: 800 }}>
+          <Typography variant="h1" sx={{ fontSize: { xs: '2.5rem', sm: '3.8rem', md: '5.5rem' }, mb: 4, maxWidth: '1000px', mx: 'auto', lineHeight: 1.08, fontWeight: 800 }}>
             Software engineered<br />
             <Box component="span" sx={{ background: 'linear-gradient(90deg, #2563EB, #A78BFA, #34D399, #2563EB)', backgroundSize: '300% auto', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', animation: 'borderShimmer 6s linear infinite' }}>
               for growth.
             </Box>
           </Typography>
           
-          <Typography variant="body1" sx={{ mb: 6, maxWidth: '650px', mx: 'auto', fontSize: '1.2rem', color: 'text.secondary', lineHeight: 1.7 }}>
+          <Typography variant="body1" sx={{ mb: 6, maxWidth: '650px', mx: 'auto', fontSize: { xs: '1.05rem', md: '1.2rem' }, color: 'text.secondary', lineHeight: 1.7 }}>
             Learn system design with our community, or hire our agency to build scalable custom software for your business.
           </Typography>
           
-          <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center', flexWrap: 'wrap', mb: 10 }}>
+          <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center', flexWrap: 'wrap', mb: { xs: 6, md: 10 } }}>
             <Button variant="contained" href="/contact" size="large" endIcon={<ArrowForwardIcon />} sx={{ py: 1.5, px: 5 }}>
               Book a Discovery Call
             </Button>
@@ -92,12 +92,12 @@ export default function Home() {
 
           {/* Floating Glass Stats Bar */}
           <Box sx={{ 
-            display: 'grid', gridTemplateColumns: { xs: 'repeat(2, 1fr)', md: 'repeat(4, 1fr)' }, gap: 2,
+            display: 'grid', gridTemplateColumns: { xs: 'repeat(2, 1fr)', md: 'repeat(4, 1fr)' }, gap: { xs: 1.5, md: 2 },
             background: 'rgba(255,255,255,0.02)',
             border: '1px solid rgba(255,255,255,0.05)',
             backdropFilter: 'blur(20px)',
-            borderRadius: '24px',
-            p: 4,
+            borderRadius: { xs: '20px', md: '24px' },
+            p: { xs: 2.5, md: 4 },
             boxShadow: '0 10px 40px rgba(0,0,0,0.2)',
           }}>
             {[
@@ -107,8 +107,8 @@ export default function Home() {
               { number: '100', label: 'Lighthouse Score' }
             ].map((stat, i) => (
               <Box key={i} sx={{ position: 'relative', '&:not(:last-child)::after': { content: '""', position: 'absolute', right: 0, top: '20%', bottom: '20%', width: '1px', background: 'rgba(255,255,255,0.05)', display: { xs: 'none', md: 'block' } } }}>
-                <Typography sx={{ fontSize: { xs: '2rem', md: '2.5rem' }, fontWeight: 800, color: '#fff', mb: 0.5 }}>{stat.number}</Typography>
-                <Typography sx={{ fontSize: '0.85rem', color: '#94A3B8', fontWeight: 500 }}>{stat.label}</Typography>
+                <Typography sx={{ fontSize: { xs: '1.75rem', md: '2.5rem' }, fontWeight: 800, color: '#fff', mb: 0.5 }}>{stat.number}</Typography>
+                <Typography sx={{ fontSize: { xs: '0.75rem', sm: '0.85rem' }, color: '#94A3B8', fontWeight: 500, lineHeight: 1.3 }}>{stat.label}</Typography>
               </Box>
             ))}
           </Box>

@@ -7,6 +7,7 @@ import Box from '@mui/material/Box';
 import theme from '../theme';
 import Header from './Header';
 import Footer from './Footer';
+import BottomNav from './BottomNav';
 
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -53,10 +54,11 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
 
       <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100dvh', position: 'relative', zIndex: 1 }}>
         <Header />
-        <Box component="main" sx={{ flexGrow: 1 }}>
+        <Box component="main" sx={{ flexGrow: 1, pb: { xs: 'calc(70px + env(safe-area-inset-bottom, 0px))', md: 0 } }}>
           {children}
         </Box>
         <Footer />
+        <BottomNav />
       </Box>
     </ThemeProvider>
   );

@@ -17,7 +17,7 @@ export default function About() {
 
   return (
     <Box>
-      <Box sx={{ pt: { xs: 20, md: 28 }, pb: { xs: 10, md: 16 } }}>
+      <Box sx={{ pt: { xs: 13, sm: 18, md: 26 }, pb: { xs: 8, md: 16 } }}>
         <Container maxWidth="md" sx={{ textAlign: 'center' }}>
           <Typography variant="h1" sx={{ fontSize: { xs: '2.5rem', sm: '3.5rem', md: '5rem' }, mb: 4, lineHeight: 1.1 }}>
             The story behind<br />Digital Thinking.

@@ -12,7 +12,7 @@ let theme = createTheme({
     h3: { fontWeight: 700, letterSpacing: '-0.01em', color: '#E2E8F0' },
     h4: { fontWeight: 600, letterSpacing: '0em', color: '#E2E8F0' },
     body1: { color: '#94A3B8', fontSize: '1.15rem', lineHeight: 1.7 },
-    body2: { color: '#64748B' },
+    body2: { color: '#94A3B8' },
     button: { textTransform: 'none', fontWeight: 600, letterSpacing: '0.02em' },
   },
   palette: {

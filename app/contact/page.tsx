@@ -24,6 +24,19 @@ const contactThemeStyles = {
 
 export default function Contact() {
   const [hoveredCard, setHoveredCard] = React.useState<number | null>(null);
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
+  const [submitted, setSubmitted] = React.useState(false);
+  const [formData, setFormData] = React.useState({ name: '', email: '', details: '' });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setSubmitted(true);
+      setFormData({ name: '', email: '', details: '' });
+    }, 700);
+  };
 
   // Common styles for TextFields
   const inputSx = {
@@ -49,7 +62,7 @@ export default function Contact() {
       {/* ═══════════════════════════════════════════════════════════
           HERO SECTION
       ═══════════════════════════════════════════════════════════ */}
-      <Box sx={{ position: 'relative', pt: { xs: 20, md: 28 }, pb: { xs: 10, md: 12 }, overflow: 'hidden' }}>
+      <Box sx={{ position: 'relative', pt: { xs: 13, sm: 18, md: 26 }, pb: { xs: 8, md: 12 }, overflow: 'hidden' }}>
         {/* Ambient glows */}
         <Box sx={{ position: 'absolute', top: '10%', left: '10%', width: '40vw', height: '40vw', borderRadius: '50%', background: 'radial-gradient(circle, rgba(37,99,235,0.08) 0%, transparent 70%)', filter: 'blur(80px)', pointerEvents: 'none', animation: 'pulseGlow 10s infinite' }} />
         <Box sx={{ position: 'absolute', top: '20%', right: '10%', width: '35vw', height: '35vw', borderRadius: '50%', background: 'radial-gradient(circle, rgba(124,58,237,0.08) 0%, transparent 70%)', filter: 'blur(90px)', pointerEvents: 'none', animation: 'pulseGlow 12s infinite reverse' }} />
@@ -103,25 +116,71 @@ export default function Contact() {
                   <Typography variant="h4" sx={{ fontSize: '1.5rem', fontWeight: 700, color: '#F1F5F9' }}>Send a Message</Typography>
                 </Box>
 
-                <Box component="form" sx={{ display: 'flex', flexDirection: 'column', gap: 3, flexGrow: 1 }}>
-                  <TextField label="Name" variant="outlined" fullWidth required sx={inputSx} />
-                  <TextField label="Email" type="email" variant="outlined" fullWidth required sx={inputSx} />
-                  <TextField label="Project Details" variant="outlined" multiline rows={5} fullWidth required sx={inputSx} />
-                  
-                  <Button 
-                    variant="contained" 
-                    size="large" 
-                    endIcon={<SendIcon />}
-                    sx={{ 
-                      mt: 2, py: 1.5, borderRadius: '12px',
-                      background: 'linear-gradient(135deg, #2563EB, #4F46E5)',
-                      boxShadow: '0 8px 24px rgba(37,99,235,0.25)',
-                      '&:hover': { background: 'linear-gradient(135deg, #1D4ED8, #4338CA)', boxShadow: '0 12px 32px rgba(37,99,235,0.35)' }
-                    }}
-                  >
-                    Send Message
-                  </Button>
-                </Box>
+                {submitted ? (
+                  <Box sx={{
+                    p: 4, my: 'auto', textAlign: 'center', borderRadius: '16px',
+                    background: 'rgba(34, 197, 94, 0.1)', border: '1px solid rgba(34, 197, 94, 0.3)'
+                  }}>
+                    <Typography variant="h5" sx={{ color: '#4ADE80', fontWeight: 700, mb: 1 }}>
+                      Message Received!
+                    </Typography>
+                    <Typography variant="body1" sx={{ color: '#94A3B8', mb: 3 }}>
+                      Thank you for reaching out. We will get back to you within 24 hours.
+                    </Typography>
+                    <Button variant="outlined" onClick={() => setSubmitted(false)} sx={{ borderRadius: '100px' }}>
+                      Send Another Message
+                    </Button>
+                  </Box>
+                ) : (
+                  <Box component="form" onSubmit={handleSubmit} sx={{ display: 'flex', flexDirection: 'column', gap: 3, flexGrow: 1 }}>
+                    <TextField 
+                      label="Name" 
+                      variant="outlined" 
+                      fullWidth 
+                      required 
+                      value={formData.name}
+                      onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
+                      sx={inputSx} 
+                    />
+                    <TextField 
+                      label="Email" 
+                      type="email" 
+                      variant="outlined" 
+                      fullWidth 
+                      required 
+                      value={formData.email}
+                      onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+                      sx={inputSx} 
+                    />
+                    <TextField 
+                      label="Project Details" 
+                      variant="outlined" 
+                      multiline 
+                      rows={5} 
+                      fullWidth 
+                      required 
+                      value={formData.details}
+                      onChange={(e) => setFormData(prev => ({ ...prev, details: e.target.value }))}
+                      sx={inputSx} 
+                    />
+                    
+                    <Button 
+                      type="submit"
+                      variant="contained" 
+                      size="large" 
+                      disabled={isSubmitting}
+                      endIcon={<SendIcon />}
+                      sx={{ 
+                        mt: 2, py: 1.5, borderRadius: '12px',
+                        background: 'linear-gradient(135deg, #2563EB, #4F46E5)',
+                        boxShadow: '0 8px 24px rgba(37,99,235,0.25)',
+                        '&:hover': { background: 'linear-gradient(135deg, #1D4ED8, #4338CA)', boxShadow: '0 12px 32px rgba(37,99,235,0.35)' }
+                      }}
+                    >
+                      {isSubmitting ? 'Sending...' : 'Send Message'}
+                    </Button>
+                  </Box>
+                )}
 
                 <Box sx={{ mt: 5, pt: 4, borderTop: '1px solid rgba(255,255,255,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1 }}>
                   <Typography variant="body2" sx={{ color: '#64748B' }}>Or email directly at:</Typography>
