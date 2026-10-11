@@ -9,9 +9,12 @@ interface TechCardProps {
 export default function TechCard({ children, sx = {} }: TechCardProps) {
   return (
     <Box sx={{
-      p: { xs: 3, md: 4 },
+      p: { xs: 2.5, sm: 3, md: 4 },
       height: '100%',
-      borderRadius: '32px',
+      width: '100%',
+      maxWidth: '100%',
+      boxSizing: 'border-box',
+      borderRadius: { xs: '20px', md: '32px' },
       background: 'linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%)',
       border: '1px solid rgba(255,255,255,0.1)',
       borderTop: '1px solid rgba(255,255,255,0.2)',

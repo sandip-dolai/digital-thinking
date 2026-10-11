@@ -142,19 +142,19 @@ export default function APITester() {
 
   return (
     <Box sx={apiThemeStyles}>
-      <Box sx={{ pt: { xs: 20, md: 24 }, pb: { xs: 10, md: 10 }, position: 'relative' }}>
+      <Box sx={{ pt: { xs: 13, sm: 16, md: 24 }, pb: { xs: 6, md: 10 }, position: 'relative' }}>
         
         {/* Ambient glows to match 2026 aesthetics */}
         <Box sx={{ position: 'absolute', top: '10%', right: '20%', width: '30vw', height: '30vw', borderRadius: '50%', background: 'radial-gradient(circle, rgba(37,99,235,0.06) 0%, transparent 70%)', filter: 'blur(80px)', pointerEvents: 'none', animation: 'pulseGlow 8s infinite' }} />
         
-        <Container maxWidth="xl" sx={{ position: 'relative', zIndex: 1 }}>
-          <Typography sx={{ color: '#2563EB', fontWeight: 700, letterSpacing: '0.15em', mb: 2, display: 'block', fontSize: '0.8rem', textTransform: 'uppercase' }}>
+        <Container maxWidth="xl" sx={{ position: 'relative', zIndex: 1, px: { xs: 2, sm: 3, md: 4 } }}>
+          <Typography sx={{ color: '#2563EB', fontWeight: 700, letterSpacing: '0.15em', mb: 1.5, display: 'block', fontSize: '0.8rem', textTransform: 'uppercase' }}>
             Developer Tools
           </Typography>
-          <Typography variant="h1" sx={{ fontSize: { xs: '2.5rem', md: '3.5rem' }, mb: 2, fontWeight: 800 }}>
+          <Typography variant="h1" sx={{ fontSize: { xs: '2rem', sm: '2.5rem', md: '3.5rem' }, mb: 1.5, fontWeight: 800 }}>
             API Client
           </Typography>
-          <Typography variant="body1" sx={{ fontSize: '1.1rem', color: 'text.secondary', mb: 6 }}>
+          <Typography variant="body1" sx={{ fontSize: { xs: '0.95rem', md: '1.1rem' }, color: 'text.secondary', mb: { xs: 3, md: 6 } }}>
             A lightning-fast, zero-save HTTP client for testing REST APIs instantly in your browser.
           </Typography>
 

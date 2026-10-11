@@ -123,15 +123,15 @@ export default function Learn() {
       {/* ═══════════════════════════════════════════════════════════
           VIDEO GRID  — Categories & Shimmer Cards
       ═══════════════════════════════════════════════════════════ */}
-      <Box sx={{ pb: { xs: 12, md: 20 } }}>
-        <Container maxWidth="lg">
+      <Box sx={{ pb: { xs: 8, md: 20 } }}>
+        <Container maxWidth="lg" sx={{ px: { xs: 2, sm: 3, md: 4 } }}>
           
           {/* Categories */}
           <Box sx={{ 
-            display: 'flex', gap: 1.5, mb: 8, flexWrap: 'wrap', justifyContent: 'center',
+            display: 'flex', gap: 1, mb: { xs: 5, md: 8 }, flexWrap: 'wrap', justifyContent: 'center',
             background: 'rgba(255,255,255,0.02)', p: 1, borderRadius: '100px',
             border: '1px solid rgba(255,255,255,0.05)', backdropFilter: 'blur(10px)',
-            width: 'fit-content', mx: 'auto'
+            width: 'fit-content', mx: 'auto', maxWidth: '100%'
           }}>
             {categories.map((cat) => {
               const isActive = activeCategory === cat;
@@ -140,9 +140,9 @@ export default function Learn() {
                   key={cat} 
                   onClick={() => setActiveCategory(cat)}
                   sx={{ 
-                    px: 3, py: 1, borderRadius: '100px',
+                    px: { xs: 2, sm: 3 }, py: 0.75, borderRadius: '100px',
                     textTransform: 'none', fontWeight: isActive ? 600 : 500,
-                    fontSize: '0.9rem',
+                    fontSize: { xs: '0.8rem', sm: '0.9rem' },
                     color: isActive ? '#fff' : 'rgba(255,255,255,0.6)',
                     background: isActive ? 'rgba(37,99,235,0.15)' : 'transparent',
                     border: '1px solid',
@@ -160,7 +160,7 @@ export default function Learn() {
           </Box>
 
           {/* Videos Grid */}
-          <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(2, 1fr)' }, gap: 4 }}>
+          <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(2, 1fr)' }, gap: { xs: 3, md: 4 } }}>
             {videos.filter(v => activeCategory === 'All' || v.category === activeCategory).map((vid, i) => {
               const isHovered = hoveredVid === i;
               

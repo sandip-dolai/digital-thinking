@@ -28,9 +28,9 @@ export default function About() {
         </Container>
       </Box>
 
-      <Box sx={{ pb: { xs: 10, md: 16 } }}>
-        <Container maxWidth="lg">
-          <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(2, 1fr)' }, gap: 4 }}>
+      <Box sx={{ pb: { xs: 8, md: 16 } }}>
+        <Container maxWidth="lg" sx={{ px: { xs: 2, sm: 3, md: 4 } }}>
+          <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(2, 1fr)' }, gap: { xs: 3, md: 4 } }}>
             
             {/* Mission Card */}
             <TechCard>

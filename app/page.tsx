@@ -82,8 +82,8 @@ export default function Home() {
           </Typography>
           
           <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center', flexWrap: 'wrap', mb: { xs: 6, md: 10 } }}>
-            <Button variant="contained" href="/contact" size="large" endIcon={<ArrowForwardIcon />} sx={{ py: 1.5, px: 5 }}>
-              Book a Discovery Call
+            <Button variant="contained" href="mailto:digital.thinking@zohomail.in" size="large" endIcon={<ArrowForwardIcon />} sx={{ py: 1.5, px: 5 }}>
+              Send Us an Email
             </Button>
             <Button variant="outlined" href="/learn" size="large" sx={{ py: 1.5, px: 5, borderColor: 'rgba(255,255,255,0.15)', '&:hover': { borderColor: 'rgba(255,255,255,0.3)' } }}>
               Start Learning
@@ -282,10 +282,10 @@ export default function Home() {
             Ready to build<br />something great?
           </Typography>
           <Typography variant="body1" sx={{ color: 'text.secondary', mb: 6, maxWidth: 500, mx: 'auto', fontSize: '1.15rem' }}>
-            Whether you need a custom platform, a workflow overhaul, or a fresh web presence — let's talk.
+            Whether you need a custom platform, a workflow overhaul, or a fresh web presence — write to us.
           </Typography>
-          <Button variant="contained" href="/contact" size="large" endIcon={<ArrowForwardIcon />} sx={{ py: 2, px: 6, fontSize: '1.05rem', borderRadius: '100px' }}>
-            Book a Free Discovery Call
+          <Button variant="contained" href="mailto:digital.thinking@zohomail.in" size="large" endIcon={<ArrowForwardIcon />} sx={{ py: 2, px: 6, fontSize: '1.05rem', borderRadius: '100px' }}>
+            Email Us Directly
           </Button>
         </Container>
       </Box>

@@ -168,7 +168,7 @@ export default function Services() {
           SERVICE CARDS  — 2-col horizontal layout with animated border
       ═══════════════════════════════════════════════════════════ */}
       <Box id="services" sx={{ py: { xs: 8, md: 14 } }}>
-        <Container maxWidth="lg">
+        <Container maxWidth="lg" sx={{ px: { xs: 2, sm: 3, md: 4 } }}>
           <Box sx={{ textAlign: 'center', mb: { xs: 6, md: 10 } }}>
             <Typography sx={{ color: '#2563EB', fontWeight: 700, letterSpacing: '0.15em', mb: 2, fontSize: '0.8rem', textTransform: 'uppercase' }}>
               What We Build
